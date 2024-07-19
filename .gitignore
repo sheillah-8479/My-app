@@ -1,0 +1,28 @@
+ Virtual environment
+venv/
+
+# IDE or editor files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Dependency directories
+node_modules/
+__pycache__/
+
+# Environment-specific configurations
+.env
+config.yaml
+*.config
+
+# Compiled files and build artifacts
+*.pyc
+*.class
+*.jar
+dist/
+build/
+
+# Log files and temporary files
+*.log
+*.tmp

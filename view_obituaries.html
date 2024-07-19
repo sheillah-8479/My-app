@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Obituaries</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <h1>Obituaries</h1>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <form action="/view_obituaries" method="GET">
+            <input type="text" id="search" name="search" placeholder="Search by Name, Month, or Year" value="{{ request.args.get('search', '') }}">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <!-- Obituaries Table -->
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Date of Birth</th>
+                <th>Date of Death</th>
+                <th>Content</th>
+                <th>Author</th>
+                <th>Submission Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for obituary in obituaries %}
+            <tr>
+                <td>{{ obituary.name }}</td>
+                <td>{{ obituary.date_of_birth }}</td>
+                <td>{{ obituary.date_of_death }}</td>
+                <td>{{ obituary.content }}</td>
+                <td>{{ obituary.author }}</td>
+                <td>{{ obituary.submission_date }}</td>
+                <td class="actions">
+                    <form action="/edit_obituary.htmlbituary/{{ obituary.id }}" method="get">
+                        <button type="submit">Edit</button>
+                    </form>
+                    <form action="/delete_obituary/{{ obituary.id }}" method="post">
+                        <button type="submit" onclick="return confirm('Are you sure you want to delete this obituary?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Footer -->
+    <footer>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ url_for('view_obituaries', _external=True) }}" target="_blank">
+            <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://twitter.com/intent/tweet?url={{ url_for('view_obituaries', _external=True) }}&text=Check out these obituaries" target="_blank">
+            <i class="fab fa-twitter"></i>
+        </a>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Obituary</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Edit Obituary</h1>
+
+    <form action="/update_obituary/{{ obituary.id }}" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ obituary.name }}">
+        <br><br>
+        <label for="date_of_birth">Date of Birth:</label>
+        <input type="date" id="date_of_birth" name="date_of_birth" value="{{ obituary.date_of_birth }}">
+        <br><br>
+        <label for="date_of_death">Date of Death:</label>
+        <input type="date" id="date_of_death" name="date_of_death" value="{{ obituary.date_of_death }}">
+        <br><br>
+        <label for="content">Content:</label>
+        <textarea id="content" name="content">{{ obituary.content }}</textarea>
+        <br><br>
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" value="{{ obituary.author }}">
+        <br><br>
+        <button type="submit">Update</button>
+    </form>
+
+</body>
+</html>
